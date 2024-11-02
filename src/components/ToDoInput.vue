@@ -41,6 +41,8 @@ watch(
       showAlert({
         message: error,
         type: 'error',
+        autoClose: true,
+        duration: 5000,
       })
     }
   },

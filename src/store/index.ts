@@ -55,8 +55,8 @@ export const useTodoStore = defineStore('todo', {
       return !error
     },
 
-    async deleteTodo(id: number) {
-      const { error } = await TodoService.deleteTodo(id)
+    async deleteTodo(id: string) {
+      const { error } = await TodoService.deleteTodo(id.toString())
 
       if (error) {
         this.setError(error)

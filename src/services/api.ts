@@ -38,7 +38,7 @@ export const TodoService = {
     }
   },
 
-  async deleteTodo(id: number) {
+  async deleteTodo(id: string) {
     try {
       await todoApi.delete(`/todos/${id}`)
       return { error: null }

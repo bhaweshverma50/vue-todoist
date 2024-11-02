@@ -35,13 +35,13 @@ const sortedTodos = computed(() => {
   })
 })
 
-const formatDate = (dateString: string) => {
+const formatDate = (dateString: string | Date) => {
   return new Intl.DateTimeFormat('en-US', {
     month: 'short',
     day: 'numeric',
     hour: '2-digit',
     minute: '2-digit',
-  }).format(new Date(dateString))
+  }).format(dateString instanceof Date ? dateString : new Date(dateString))
 }
 
 const startEditing = (todo: ToDos) => {
@@ -77,7 +77,7 @@ const saveEdit = async (todo: ToDos) => {
   const updatedTodo = {
     ...todo,
     task: trimmedText,
-    updated_at: new Date().toISOString(),
+    updated_at: new Date(),
   }
 
   const success = await store.updateTodo(updatedTodo)
@@ -113,7 +113,7 @@ const updateStatus = async (todo: ToDos) => {
   const updatedTodo = {
     ...todo,
     status: statusTransitions[todo.status],
-    updated_at: new Date().toISOString(),
+    updated_at: new Date(),
   }
   await store.updateTodo(updatedTodo)
 }
