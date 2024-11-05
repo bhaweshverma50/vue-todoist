@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ToDoInput from './components/ToDoInput.vue'
-import ListTodos from './components/ListTodos.vue'
+import TodoList from './components/TodoList.vue'
 </script>
 
 <template>
@@ -11,6 +11,6 @@ import ListTodos from './components/ListTodos.vue'
       Welcome to ToDoist
     </div>
     <ToDoInput />
-    <ListTodos />
+    <TodoList />
   </div>
 </template>

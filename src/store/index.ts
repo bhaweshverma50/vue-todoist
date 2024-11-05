@@ -81,6 +81,14 @@ export const useTodoStore = defineStore('todo', {
 
       return !error
     },
+    filterTodos(searchText: string) {
+      if (!searchText) {
+        return this.todos
+      }
+      return this.todos.filter(todo =>
+        todo.task.toLowerCase().includes(searchText.toLowerCase()),
+      )
+    },
   },
 
   getters: {
