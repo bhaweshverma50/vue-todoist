@@ -40,6 +40,7 @@ watch(
     if (error) {
       showAlert({
         message: error,
+        undo: error.toLowerCase().includes('delete'),
         type: 'error',
         autoClose: true,
         duration: 5000,

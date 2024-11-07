@@ -11,4 +11,5 @@ export interface ErrorProps {
   type?: 'error' | 'warning' | 'success' | 'info'
   autoClose?: boolean
   duration?: number
+  undo?: boolean
 }

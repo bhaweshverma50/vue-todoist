@@ -41,7 +41,7 @@ export const TodoService = {
   async deleteTodo(id: string) {
     try {
       await todoApi.delete(`/todos/${id}`)
-      return { error: null }
+      return { error: 'Deleted todo successfully' }
     } catch (error) {
       console.error(error)
       return { error: 'Failed to delete todo' }
@@ -55,6 +55,47 @@ export const TodoService = {
     } catch (error) {
       console.error(error)
       return { error: 'Failed to update todo' }
+    }
+  },
+}
+
+export const TrashService = {
+  async getAllTrash() {
+    try {
+      const response = await todoApi.get('/trash')
+      return { data: response.data, error: null }
+    } catch (error) {
+      console.error(error)
+      return { data: null, error: 'Failed to fetch trash' }
+    }
+  },
+  async deleteTrash(id: string) {
+    try {
+      await todoApi.delete(`/trash/${id}`)
+      return { error: 'Deleted trash successfully' }
+    } catch (error) {
+      console.error(error)
+      return { error: 'Failed to delete trash' }
+    }
+  },
+
+  async restoreTrash(id: string) {
+    try {
+      const response = await todoApi.put(`/trash/${id}`)
+      return { data: response.data, error: null }
+    } catch (error) {
+      console.error(error)
+      return { error: 'Failed to restore trash' }
+    }
+  },
+
+  async emptyTrash() {
+    try {
+      await todoApi.delete('/trash')
+      return { error: 'Emptied trash successfully' }
+    } catch (error) {
+      console.error(error)
+      return { error: 'Failed to empty trash' }
     }
   },
 }

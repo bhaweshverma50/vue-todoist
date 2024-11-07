@@ -6,6 +6,7 @@ const props = defineProps<ErrorProps>()
 
 const emit = defineEmits<{
   (e: 'close'): void
+  (e: 'undo'): void
 }>()
 
 const defaultDuration = 5000 // 5 seconds
@@ -29,6 +30,10 @@ const closeAlert = () => {
   emit('close')
 }
 
+const undoDelete = () => {
+  emit('undo')
+}
+
 onMounted(() => {
   if (props.autoClose) {
     autoCloseTimeout = window.setTimeout(() => {
@@ -49,6 +54,15 @@ onBeforeUnmount(() => {
     <div v-if="message" class="rounded-md" :class="alertClasses">
       {{ message }}
       <button
+        v-if="undo"
+        class="cursor-pointer underline font-semibold hover:opacity-80"
+        @click="undoDelete"
+        type="button"
+      >
+        Undo
+      </button>
+      <button
+        v-else
         class="cursor-pointer underline font-semibold hover:opacity-80"
         @click="closeAlert"
         type="button"
